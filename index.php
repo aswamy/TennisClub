@@ -114,8 +114,6 @@
 					</div>
 					<p><a class="btn pull-right" href="#">View All News &raquo;</a></p>
 				</div>
-				<br/>
-				<hr class="visible-phone">
 				
 				<div class="span5">
 					<h2>Upcoming Events</h2>
@@ -134,10 +132,7 @@
 			</div>
 
 			<hr>
-
-			<footer>
-				<p>&copy; Alok's Tennis Club 2013</p>
-			</footer>
+			<?php include 'layout/footer.html';?>
 
 		</div> <!-- /container -->
 

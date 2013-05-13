@@ -50,7 +50,7 @@
 				<h1>Alok's Tennis Club's FAQs!</h1>
 				<p>Here is a list of commonly asked questions about our club. If you cannot find your answers here, or would like more information on our club, <a href="<?php echo $contacts_link; ?>">contact us</a>!</p>
 				<p> ... Or check out our club info page: </p>
-				<p><a href="#" class="btn btn-primary btn-large">Club Info &raquo;</a></p>
+				<p><a href="<?php echo $info_link; ?>" class="btn btn-primary btn-large">Club Info &raquo;</a></p>
 			</div>
 
 			<div class="row">
@@ -112,10 +112,7 @@
 			</div><!--/row-->
 
 			<hr>
-
-			<footer>
-				<p>&copy; Company 2013</p>
-			</footer>
+			<?php include 'layout/footer.html';?>
 
 		</div>
 		<!-- Le javascript -->
