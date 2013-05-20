@@ -87,29 +87,54 @@
 					<h2>Latest News</h2>
 					<div class="tabbable tabs-left">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#newstab1_1" data-toggle="tab">Meeting Cancelled</a></li>
-							<li><a href="#newstab1_2" data-toggle="tab">July Tournament</a></li>
-							<li><a href="#newstab1_3" data-toggle="tab">Early Registration</a></li>
+							<?php
+								require 'sql/main-connect.inc.php';
+								$query = "SELECT IF( ISNULL( news_title ) OR LENGTH( news_title ) =0, CONCAT( substr( news_subject, 1, 20 ) , '...' ) , news_title ) AS news_title FROM news_table ORDER BY news_date DESC LIMIT 3";
+						
+								$query_result = mysqli_query($conn, $query);
+								$news_counter = 1;
+
+								while($query_row = mysqli_fetch_array($query_result)) {
+									$news_title = $query_row['news_title'];
+									if ($news_counter == 1) {
+										$active_tab = 'class="active"';
+									} else {
+										$active_tab = null;
+									}
+									echo "<li $active_tab><a href=\"#newstab1_$news_counter\" data-toggle=\"tab\">$news_title</a></li>";
+									$news_counter++;
+								}
+							?>
 						</ul>
 						<div class="tab-content news-main">
-							<div class="tab-pane active" id="newstab1_1">
-								<h4>Sunday Meeting Cancelled</h4>
-								<h5>Posted by Admin on April 25, 2013</h5>
-								<p>Meeting Cancelled next Sunday due to renovation. We will be meeting instead on Tuesday at 5:30pm.</p>
-								<a href="#">More...</a>
-							</div>
-							<div class="tab-pane" id="newstab1_2">
-								<h4>Tournament on July 10</h4>
-								<h5>Posted by Tim B. on April 26, 2013</h5>
-								<p>For all those who wish to participate in the upcoming tennis tournament (for advanced players) should contact Sarah Lefay.</p>
-								<a href="#">More...</a>
-							</div>
-							<div class="tab-pane" id="newstab1_3">
-								<h4>Register Early for Discout</h4>
-								<h5>Posted by Admin on April 27, 2013</h5>
-								<p>Become a member for the following year before August and get $10 off membership price.</p>
-								<a href="#">More...</a>
-							</div>
+							<?php
+								require 'sql/main-connect.inc.php';
+								$query = "SELECT news_subject, news_content, news_date, staff_fname, staff_lname FROM news_table JOIN staff_info ON news_publisherID = staff_id ORDER BY news_date DESC LIMIT 3 ";
+						
+								$query_result = mysqli_query($conn, $query);
+								$news_counter = 1;
+
+								while($query_row = mysqli_fetch_array($query_result)) {
+									$news_subject = $query_row['news_subject'];
+									$news_content = $query_row['news_content'];
+									$news_date = $query_row['news_date'];
+									$staff_fname = $query_row['staff_fname'];
+									$staff_lname = $query_row['staff_lname'];
+									if ($news_counter == 1) {
+										$active_tab = 'active';
+									} else {
+										$active_tab = null;
+									}
+
+									echo "<div class=\"tab-pane $active_tab\" id=\"newstab1_$news_counter\">
+										<h4>$news_subject</h4>
+										<h5>Posted by $staff_fname $staff_lname on $news_date</h5>
+										<p>$news_content</p>
+										<a href=\"#\">More...</a>
+										</div>";
+									$news_counter++;
+								}
+							?>
 						</div>
 					</div>
 					<p><a class="btn pull-right" href="#">View All News &raquo;</a></p>

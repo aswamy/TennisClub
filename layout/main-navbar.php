@@ -21,7 +21,7 @@
           </li>
           <li><a href="<?php echo $news_link;?>">News</a></li>
           <li><a href="<?php echo $events_link;?>">Events</a></li>
-          <li><a href="<?php echo $contacts_link;?>">Contact</a></li>
+          <li><a href="<?php echo $contacts_link;?>">Contact Us</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extras <b class="caret"></b></a>
             <ul class="dropdown-menu">

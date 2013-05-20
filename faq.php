@@ -62,20 +62,16 @@
 							require 'sql/main-connect.inc.php';
 							$query = "SELECT faq_question, faq_answer FROM faq_list ORDER BY faq_order";
 
-							$query_run = mysql_query($query);
+							$query_result = mysqli_query($conn, $query);
 
-							if ($query_run = mysql_query($query)) {
-								$help_bar_counter = 1;
-								while ($query_row = mysql_fetch_assoc($query_run)) {
+							$help_bar_counter = 1;
+							while ($query_row = mysqli_fetch_array($query_result)) {
 
-									$faq_question = $query_row['faq_question'];
+								$faq_question = $query_row['faq_question'];
 
-									echo "<li><a href=\"#faq$help_bar_counter\">$help_bar_counter. $faq_question</a></li>";
+								echo "<li><a href=\"#faq$help_bar_counter\">$help_bar_counter. $faq_question</a></li>";
 
-									$help_bar_counter += 1;
-								}
-							} else {
-								die();
+								$help_bar_counter += 1;
 							}
 							?>
 						</ul>
@@ -88,22 +84,19 @@
 
 					<section class="faq_section">
 						<?php
-						if ($query_run = mysql_query($query)) {
-							$faq_counter = 1;
-							while ($query_row = mysql_fetch_assoc($query_run)) {
+						$query_result = mysqli_query($conn, $query);
+						$faq_counter = 1;
+						while ($query_row = mysqli_fetch_array($query_result)) {
 
-								$faq_question = $query_row['faq_question'];
-								$faq_answer = $query_row['faq_answer'];
+							$faq_question = $query_row['faq_question'];
+							$faq_answer = $query_row['faq_answer'];
 
-								echo "<section id=\"faq$faq_counter\">";
-								echo "<h3>$faq_counter. $faq_question</h3>";
-								echo "<p>$faq_answer</p>";
-								echo "</section>";
+							echo "<section id=\"faq$faq_counter\">";
+							echo "<h3>$faq_counter. $faq_question</h3>";
+							echo "<p>$faq_answer</p>";
+							echo "</section>";
 
-								$faq_counter += 1;
-							}
-						} else {
-							die('Error executing query!');
+							$faq_counter += 1;
 						}
 						?>
 					</section>

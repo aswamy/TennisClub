@@ -1,13 +1,13 @@
 <?php
-  $faq_link='faq.php';
-  $home_link='index.php';
-  $info_link='#info';
-  $news_link='#news';
-  $events_link='#events';
-  $contacts_link='#contacts';
-  $stats_link='#stats';
-  $pictures_link='#pictures';
-  $credits_link='#credits';
-
-  $admin_link='#admin';
+	$faq_link='faq.php';
+	$home_link='index.php';
+	$info_link='info.php';
+	$news_link='news.php';
+	$events_link='events.php';
+	$contacts_link='contact.php';
+	$stats_link='#stats';
+	$pictures_link='#pictures';
+	$credits_link='#credits';
+	$signup_link='signup.php';
+	$admin_link='#admin';
 ?>
